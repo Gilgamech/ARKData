@@ -37,8 +37,7 @@ $playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $
 return $playerdata #| FT ;
 
 } else { 
-#Have to make the missing objects here. Then we can return instead of write-host.
-#write-host "$Player not in database TimeF =" ($players | where {$_.name -eq $player} | select TimeF).TimeF }
+#Have to add in some kind of values here.
 
 $playerdata =  $playerdata | Add-Member @{"Steam name"=$player} -PassThru
 $playerdata =  $playerdata | Add-Member @{"ARK name"="???"} -PassThru
