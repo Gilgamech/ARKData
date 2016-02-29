@@ -20,7 +20,9 @@ $players2 = ($players | where {$_.name -ne ""}).name
 #$players2 = ($players | where {$_.name -eq "RandomMadPanda"}).name
 $playerinfo = $players2
 
-foreach ($player in $players2) { 
+#foreach ($player in $players2) { 
+$players2 | foreach-object {
+$player = $_
 #write-host $player ;
 
 [array]$playerdata = $tribe | where {$_."Steam name" -eq $player } | select "Steam name",  "ARK name", "Tribe name"; 
@@ -29,24 +31,29 @@ if ($playerdata -ne $null) {
 
 $playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
 
-$playerinfo =  $playerinfo  | Add-Member @{player=$player}
+#$playerinfo =  convertto-json ($playerdata )
 #$playerinfo =  $playerinfo  | Add-Member @{$player.TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
 
-write-host $playerdata | FT ;
+return $playerdata #| FT ;
 
+} else { 
+#Have to make the missing objects here. Then we can return instead of write-host.
+#write-host "$Player not in database TimeF =" ($players | where {$_.name -eq $player} | select TimeF).TimeF }
+
+$playerdata =  $playerdata | Add-Member @{"Steam name"=$player} -PassThru
+$playerdata =  $playerdata | Add-Member @{"ARK name"="???"} -PassThru
+$playerdata =  $playerdata | Add-Member @{"Tribe name"="#N\A"} -PassThru
+$playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
+
+#send back player data
+return $playerdata #| FT ;
+
+#return $playerinfo  | FT ;
+#write-host $playerdata | FT ;
 #write-host (convertto-json $playerdata) ;
 #write-host $playerdata."Steam name" | FT ;
 #write-host $playerinfo | FT ;
-
-} else 
-{ 
-	write-host "$Player not in database TimeF =" ($players | where 
-	{
-		$_.name -eq $player
-	} | select TimeF).TimeF 
 }
-
-
 };
 
 
