@@ -26,3 +26,22 @@ Out-ArkdataWebpage - Outputs the Arkdata page for a given server. Depends on the
 
 ARK name and Tribe name are collected by watching ingame chat and manually updating the DB. This works surprisingly well, and gives us crazy amounts of data. "Do things that don't scale", right? Inspired by some guy who got on the front page of HN:
 https://defaultnamehere.tumblr.com/post/139351766005/graphing-when-your-facebook-friends-are-awake
+
+
+
+# SteamQuery
+I'm calling it the 0.2 release because it's still very alpha. 
+0.1 was the first version where I got any server response. 
+
+This will give you a string (and more) for any of the commands. 
+
+- Get-TestingCommands - A few servernames and commands to test with, needs updating.
+- Get-ArkdataSteamDedicatedServers - Combines "Get-ArkdataDedicatedServers" and "Import-ArkdataINI" from Arkdata to 1. download and 2. parse the Official Dedicated server list. Has decent output for pipelining.
+- Get-SteamServers - Multi-purpose response cmdlet. Choose your response type. Good for prototyping and demoing, not good for production use. Was the original POC.
+- Get-SteamServerInfo - Gets the A2S_INFO from any Steam game server. This is how Steam games find servers.
+- Get-SteamServerPlayers - Gets the A2S_PLAYERS from any Steam game server.  
+- Get-SteamServerRules - Gets the A2S_RULES from any Steam game server. Often has interesting tidbits - in ARK this shows the ingame time, among other things.
+
+Written with loving assistance from these helpful sources:
+https://developer.valvesoftware.com/wiki/Server_Queries#Response_Format
+https://learn-powershell.net/2011/02/21/querying-udp-ports-with-powershell/
