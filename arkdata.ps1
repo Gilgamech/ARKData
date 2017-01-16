@@ -605,7 +605,8 @@ $datestartpart = (get-date)
 $serverFolder = "$ArkdataDataDir\$servername"
 $ArkdataPlayers = Get-ArkdataPlayers $servername
 #Shows timestamp if people are playing, otherwise sleeping.
-if ($ArkdataPlayers) { 
+
+if ($ArkdataPlayers-ne $null) { 
 #Parse the FileName back into the .NET datetime object
 $ts = ((Dir -file $serverFolder).name[-1])
 #Get-ArkdataFileDate
@@ -638,8 +639,8 @@ $playerspart = $ArkdataPlayers | sort "Tribe name" | select "Steam name", "ARK n
 #$middlepart2 Tribe data gathered lovingly by humans from ingame chat.
 #Count of tribes by number of players online
 $tribespart = ($ArkdataPlayers)."Tribe name" | Group-Object | sort "count" -descending | select "count", "name" | ConvertTo-Html -fragment | out-string | Add-HTMLTableAttribute  -AttributeName 'class' -Value 'sortable'
-} #end if ($ArkdataPlayers -ne $null)
 
+} #end if ($ArkdataPlayers -ne $null)
 #24h player count
 $playercount = $ArkdataPlayers.TimeF.Count
 
