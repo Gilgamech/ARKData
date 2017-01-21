@@ -16,6 +16,7 @@ $ARKDataWebDir = "C:\Dropbox\Public\html5\ARK" #Where Arkdata writes its website
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 
+#region always runs
 #Test if paths are valid:
 if (!(test-path $ARKDataDataDir)) { 
 write-host $ARKDataDataDir "is not a valid directory, please check `$ARKDataDataDir in your init settings at the top of Arkdata.ps1. 
@@ -30,8 +31,9 @@ break
 write-host "Directories validated." -f "Yellow"
 write-host "Type " -f "Yellow" -nonewline; write-host "Start-ARKDataTask" -f  "Green" -nonewline; write-host " to start Arkdata." -f "Yellow"
 }
+#endregion
 
-#Functions 
+#region Functions 
 function Start-ArkdataTask
 {
 
@@ -708,8 +710,10 @@ $serverlog >> $webdir #Manual serverlog text file
 $tailpart >> $webdir #Footer - Website errors...down to ad.
 
 } #end Out-ArkdataWebpage
+# endregion
 
 
+#region Webparts
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
