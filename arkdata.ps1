@@ -1,10 +1,11 @@
 #ARKData version 2.0
 #
 #Init settings
-#Import webparts data file for webpage stamping
-$ArkdataBinDir = (Get-Location).path
-$ArkdataDataDir = "D:\Arkdata"
-$ArkdataWebDir = "C:\Dropbox\Public\html5\ARK"
+$ARKDataBinDir = (Get-Location).path #Where Arkdata.ps1 is ran from. Currently also hardcoded on line 294.
+$ARKDataDataDir = "D:\ARKData" #Where Arkdata stores its data files.
+$ARKDataWebDir = "C:\Dropbox\Public\html5\ARK" #Where Arkdata writes its website files.
+#
+#
 #
 #ipmo "$ArkdataBinDir\Arkdatawebparts.ps1"
 #
