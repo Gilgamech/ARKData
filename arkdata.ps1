@@ -230,13 +230,15 @@ Function Add-HTMLTableAttribute
 }
 
 
-function Get-ArkdataPlayers
-#Concatenates .tribe.csv and latest Arkdata file to show tribes and playtimes of active players.
+function Get-ARKDataPlayers
+#Concatenates .tribe.csv and latest ARKdata file to show tribes and playtimes of active players.
 {
+
 Param([Parameter(Mandatory=$True,Position=1)][string]$servername)
 
-$serverFolder = "$ArkdataDataDir\$servername"
-$tribe = import-csv "$ArkdataDataDir\assets\.tribe.csv"
+
+$serverFolder = "$ARKDataDataDir\$servername"
+$tribe = import-csv "$ARKDataDataDir\assets\.tribe.csv"
 #get latest scrape, parse, data for players with names
 $players = (convertfrom-json (gc ($serverfolder + "\" + (Dir $serverFolder | Sort CreationTime -Descending | Select Name -First 1).name))).players
 $players2 = ($players | where {$_.name -ne ""}).name
