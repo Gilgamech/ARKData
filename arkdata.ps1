@@ -255,7 +255,7 @@ return $playerdata #| FT ;
 #Have to add in some kind of values here.
 
 $playerdata =  $playerdata | Add-Member @{"Steam name"=$player} -PassThru
-$playerdata =  $playerdata | Add-Member @{"ARK name"="???"} -PassThru
+$playerdata =  $playerdata | Add-Member @{"ARK name"="$player ???"} -PassThru
 $playerdata =  $playerdata | Add-Member @{"Tribe name"="#N\A"} -PassThru
 $playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
 
@@ -338,7 +338,7 @@ return $playerdata #| FT ;
 $playername = $player.name 
 $playerlasttime  = Import-Csv "$serverFolder\player\$playername.csv"
 $playerdata =  $playerdata | Add-Member @{"Steam name"=$player.name} -PassThru
-$playerdata =  $playerdata | Add-Member @{"ARK name"="???"} -PassThru
+$playerdata =  $playerdata | Add-Member @{"ARK name"="$player ???"} -PassThru
 $playerdata =  $playerdata | Add-Member @{"Tribe name"="#N\A"} -PassThru
 $playerdata =  $playerdata | Add-Member @{"Last Session Ended"=$playerlasttime} -PassThru
 
@@ -494,7 +494,7 @@ if ( $playerdata."Steam name".length -le 0 ) { #write-host $player.name } }
 #Add default values
 $addplayer = $player.name + ",???,#N/A"
 $addplayer = $addplayer | Add-Member @{"Steam name"=$playername} -passthru
-$addplayer = $addplayer | Add-Member @{"ARK name"="???"} -passthru
+$addplayer = $addplayer | Add-Member @{"ARK name"="$player ???"} -passthru
 $addplayer = $addplayer | Add-Member @{"Tribe name"="#N\A"} -passthru
 $addplayer = $addplayer | Add-Member @{"First seen"=$arktime} -passthru
 
@@ -694,7 +694,7 @@ $middlepart2 >> $webdir #Tribe data gathered lovingly...
 $tribespart >> $webdir #Count of tribes online
 $middlepartplayercount >> $webdir #Player count:
 $playercount >> $webdir #Count of ArkdataPlayers
-$middlepart5m >> $webdir #"???" means never seen...
+$middlepart5m >> $webdir #"$player ???" means never seen...
 $playerslast24w >> $webdir #Players seen last 24h by session ended date
 $middlepart24h >> $webdir #Players seen:
 $playercount24h >> $webdir #Count of Players seen last 24h
@@ -856,7 +856,7 @@ $middlepartplayercount = @'
 
 $middlepart5m = @'
 </h3>
-<h4>"???" means never seen on ingame chat. <br>
+<h4>"PlayerName ???" means never seen on ingame chat. <br>
 "#N\A" means No Tribe or Unknown.</h4>
 <h2>!Seen</h2>
 <h3>Players seen in the past 24 hours, who are not currently playing:</h3>
