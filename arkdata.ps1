@@ -7,25 +7,15 @@ $ARKDataWebDir = "C:\Dropbox\Public\html5\ARK" #Where Arkdata writes its website
 #
 #
 #
-#ipmo "$ArkdataBinDir\Arkdatawebparts.ps1"
 #
-#To run, open Powershell and run these 2 lines, without the hash/pound sign (#)
-#ipmo ".\Arkdata.ps1"
-#Run-ArkdataTask
-#servers: 
 #
 # 
-
-
-
-
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 
-#Functions 
 
 function Start-ArkdataTask
 {
@@ -51,22 +41,6 @@ start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-Ar
 #The-Asia-OfficialServer529
 #start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "115.182.255.34" -serverport 27019 }
 
- <# 
-while ($true) {
-foreach ($job in (get-job) ){
-cls ;
-write-host "Date:" (get-date)  "Job:" $Job.name "Length:"  $recjob.length # "Has data:" $recjob.hasmoredata ; 
-get-job | where {$_.State -match "Running"} | select ID, State, HasMoreData, Command | FL ; 
-$recjob = receive-job $job.id
-if  ($recjob.length -gt 3) {
-$recjob[-3..-1]
-} else {
-$recjob
-} #end if 
-sleep 10
-} #end foreach
-} #end while
- #>
  
 Get-ArkdataTask
 } #end Start-ArkdataTask
@@ -111,8 +85,6 @@ $ArkdataBinDir = "C:\Dropbox\Public\Scripts\Powershell\ARK"
 
 #run these tasks
 #Arkdata scraper, downloads and parses data packet, outputs to files.
-#[string]$servername = & "$ArkdataBinDir\Arkdatascrape.ps1" $serverip $serverport
-
 $Arkdata = Get-ArkdataPayload $serverip $serverport 
 [string]$servername = Get-ArkdataServerName $Arkdata
 Test-ArkdataHostDirs $servername
@@ -140,9 +112,6 @@ Sleep ($sleeptime)
 }#end while
 
 } #end Run-ArkdataTask
-
-
-
 function Get-ArkdataPayload
 {
 Param(
@@ -181,7 +150,6 @@ $Arkdatapayload > "$ArkdataDataDir\$arkhost\$arktime.txt"
 #Return $Arkdata
 $Arkdata
 }
-
 
 #Parses the OfficialServer.ini files into objects - each OfficialServer has 4 OfficialServers running on it - ports 27015-27019
 function Import-ArkdataINI
@@ -582,7 +550,6 @@ sleep 60
 } #end Get-ArkdataDedicatedServers
 
 
-#Website functions
 Function Out-ArkdataIndex
 {
 $servers = (gci "$ArkdataWebDir\*.html").basename | where { $_ -notmatch "index" }
@@ -725,19 +692,11 @@ $tailpart >> $webdir #Footer - Website errors...down to ad.
 
 
 
-
-
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
-
-
-
-
-
-
 
 $toppart = @'
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
