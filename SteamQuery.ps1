@@ -15,8 +15,9 @@ $SteamQuery = .\SteamQuery.ps1
 function Get-TestingCommands
 {
 write-host "
+Get-SteamServers 104.156.227.231 -Player
+Get-SteamServers 104.156.227.231 27040
 Get-SteamServers 10.0.0.5 -Rules
-Get-SteamServers 72.251.237.140  -Player
 Get-SteamServerInfo 10.0.0.5 
 Get-SteamServerInfo 72.251.237.140 
 "
