@@ -92,8 +92,6 @@ Param(
    [int]$serverport
 ) #end params
 
-
-#always runs
 $ArkdataBinDir
 while ($true) {
 $ArkdataBinDir = "C:\Dropbox\Public\Scripts\Powershell\ARK"
@@ -147,8 +145,6 @@ sleep 5
 } #end IF
 } #end WHILE
 
-<#
-#>
 #Convert Arkdatapayload to usable format
 $Arkdata = (ConvertFrom-Json $Arkdatapayload)
 $arkhost = ($Arkdata.info.hostname.split(" "))[0]
@@ -160,6 +156,8 @@ $Arkdatapayload > "$ArkdataDataDir\$arkhost\$arktime.txt"
 #Return $Arkdata
 $Arkdata
 }
+<#
+#>
 
 #Parses the OfficialServer.ini files into objects - each OfficialServer has 4 OfficialServers running on it - ports 27015-27019
 function Import-ArkdataINI
@@ -712,8 +710,6 @@ $tailpart >> $webdir #Footer - Website errors...down to ad.
 } #end Out-ArkdataWebpage
 
 
-
-
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
 #+++++ WEBPARTS DOWN HERE +++++
@@ -887,3 +883,4 @@ Copyright 2016 Gilgamech Technologies.</h4>
 </body></html>
 '@
 #    <a href=https://imgur.com/gallery/A0Oqmx8><img src=https://i.imgur.com/A0Oqmx8.png title="C1ick h34r ph0r m04r inph0" /></a>
+#end
