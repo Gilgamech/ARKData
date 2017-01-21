@@ -1,4 +1,18 @@
-﻿function Get-TestingCommands
+﻿
+
+
+
+
+
+
+
+
+
+
+$SteamQuery = .\SteamQuery.ps1
+(cat $SteamQuery | Select-String "function") | select -skip 1
+
+function Get-TestingCommands
 {
 write-host "
 Get-SteamServers 10.0.0.5 -Rules
