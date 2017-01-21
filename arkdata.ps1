@@ -147,7 +147,8 @@ sleep 5
 } #end IF
 } #end WHILE
 
-
+<#
+#>
 #Convert Arkdatapayload to usable format
 $Arkdata = (ConvertFrom-Json $Arkdatapayload)
 $arkhost = ($Arkdata.info.hostname.split(" "))[0]
