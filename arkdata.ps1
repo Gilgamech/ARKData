@@ -1,12 +1,5 @@
-#Arkdata
-#Versions:
-#1.5 - 
-#1.4 - Upgraded to functions with cmdlets.
-#1.3 - Upgrade to fully param'd scripts (removal of hardcodes) for easy use with any server. Just feed an IP and it figures out the rest.
-#1.2 - Upgrade to data system allows "Players seen last 24h" view
-#1.1 - Upgrade scheduling engine allows once-a-minute actions
-#1.0 - Page online
-
+#ARKData version 2.0
+#
 #Init settings
 #Import webparts data file for webpage stamping
 $ArkdataBinDir = (Get-Location).path
