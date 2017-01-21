@@ -738,22 +738,23 @@ $gilgabanner = @'
 <link rel='shortcut icon' href='//gilgamech.com/favicon.ico' type='image/x-icon'/ >
 <meta http-equiv="refresh" content="60">
 <link rel="stylesheet" type="text/css" charset="utf-8" href="//gilgamech.com/gilgamech.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" href="/ark/Arkdata.css">
-<link rel="stylesheet" type="text/css" charset="utf-8" href="/ark/Arkdatam.css" media="handheld" />
+<link rel="stylesheet" type="text/css" charset="utf-8" href="/ark/arkdata.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" href="/ark/arkdatam.css" media="handheld" />
 <script  type="text/css" charset="utf-8" src="/ark/sorttable.js"></script>
 </head>
 <body>
 <div class = "top">
 <a href="/">Gilgamech Technologies</a>
 </div>
-<p class="menu">
+<nav>
     <a href="/">Home</a> |
 	<a href="/ark/index.html">Arkdata!</a> | 
 	<a href="/minecraft.html">Minecraft!</a> | 
     <a href="/game.html">Game Page (under development)</a> | 
 	<a href="/video.html">Video (under development)</a> |
 	<a href="/clock.html">Concept clock (under development)</a> |
-</p>
+</nav>
+<div class="content">
 <H1>Welcome to Arkdata</h1>
 <h4>Gil's player and tribe tracker</H4>
 '@
@@ -880,6 +881,7 @@ $tailpart = @'
 <br>
 <br>
 <br>
+</div>
 <h4>Website errors? Bad data? Advertising questions? <a href="mailto:Arkdataproject@gilgamech.com">Email me!</a><br>
 Copyright 2016 Gilgamech Technologies.</h4>
 <h6></h6>
