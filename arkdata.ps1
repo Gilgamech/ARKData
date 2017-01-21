@@ -333,6 +333,7 @@ $playerdata =  $playerdata | Add-Member @{"Last Session Ended"=$playerlasttime} 
 return $playerdata #| FT ;
 }#end if
 }; #end $players foreach-object 
+
 } #end Get-ArkdataPlayersLastDay
 
 
@@ -464,6 +465,7 @@ Param(
 $arktime = get-date -format yyyy-MM-dd-HH-mm-ss
 #get latest scrape, parse, data for players with names
 $players = $Arkdata.players | where {$_.name -ne ""} 
+
 #Who's online but not in .tribe.csv?
 foreach ($player in $players) {
 
@@ -521,6 +523,7 @@ $arkhost = ($Arkdata.info.hostname.split(" "))[0]
 $arkhost
 }
 
+
 #Get-ArkdataFileDate 2016-03-16-00-07-02
 Function Get-ArkdataFileDate
 {
@@ -531,6 +534,8 @@ Param(
 $FileName = $FileName.split(".")[0]
 get-date -year $FileName.split("-")[0] -month $FileName.split("-")[1] -day $FileName.split("-")[2] -hour $FileName.split("-")[3] -minute $FileName.split("-")[4] -second $FileName.split("-")[5]
 }
+
+
 
 
 
@@ -570,6 +575,9 @@ $serverthree>> $indexfile #HTML after servername to close text display
 $endpart >> $indexfile #Page still under development
 $tailpart >> $indexfile #Footer and banner ads
 } #end Out-ArkdataIndex
+
+
+
 
 
 Function Out-ArkdataWebpage
