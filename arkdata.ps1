@@ -108,6 +108,7 @@ Out-ArkdataTribeDB $Arkdata
 
 #Create the .1440.txt file.
 Out-ArkdataPlayersFile $servername
+#Start-Process -filepath powershell.exe -argumentlist 'Out-ArkdataPlayersFile $servername'
 
 #Arkdata webpage generator. Calls Arkdata output data combiner.
 Out-ArkdataWebpage $servername
