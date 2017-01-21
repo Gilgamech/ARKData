@@ -85,7 +85,7 @@ Write-Host -fore red "Connection timed out. Double-check the server's listening 
 #If the challenge isn't empty, print as Bytes then print as ASCII
 if ($content) {
 #	$content
-	$contxt = Flip-BytesToText $content -a
+	$contxt = Flip-BytesToText $content 
 	-join $contxt
 	
 #Data container
