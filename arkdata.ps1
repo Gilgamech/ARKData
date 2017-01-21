@@ -146,13 +146,6 @@ sleep 5
 } #end IF
 } #end WHILE
 
-#Pull in the Ark2data payload
-#while ($ark2datapayload -eq $null) {
-#$ark2datapayload = (& C:\Dropbox\Programs\util\curl-7.47.1\curl.exe "https://api.ark.bar/server/$serveripport" )
-#if ($ark2datapayload -eq $null) {
-#sleep 5
-#} #end IF
-#} #end WHILE
 
 #Convert Arkdatapayload to usable format
 $Arkdata = (ConvertFrom-Json $Arkdatapayload)
