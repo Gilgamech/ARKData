@@ -198,10 +198,11 @@ $objection[ $arrayspot ].ServerIP = $serverip
 } #end foreach
 #return
 $objection
-} #end function
+} #end Import-ArkDataINI 
 
 
 #I got this online somewhere. I don't even use it. This is to add some attribute to my dynamic tables.
+#Got from https://www.reddit.com/r/PowerShell/comments/2nni5r/the_power_of_converttohtml_and_css_part_2/
 Function Add-HTMLTableAttribute
 {
     Param
@@ -269,20 +270,20 @@ return $playerdata #| FT ;
 
 
 
-} #end function Get-ArkdataPlayers
+} #end Get-ARKDataPlayers
 
 
 
-function Get-ArkdataPlayersLastDay
+function Get-ARKDataPlayersLastDay
 {
 Param(
 
    [Parameter(Mandatory=$True,Position=1)]
    [string]$servername
 )
-#Concatenates .tribe.csv and latest Arkdata file to show tribes and playtimes of active players.
-$serverFolder = "$ArkdataDataDir\$servername"
-$tribe = import-csv "$ArkdataDataDir\assets\.tribe.csv"
+#Concatenates .tribe.csv and latest ARKdata file to show tribes and playtimes of active players.
+$serverFolder = "$ARKDataDataDir\$servername"
+$tribe = import-csv "$ARKDataDataDir\assets\.tribe.csv"
 $file = ".1440.txt"
 #get latest scrape, parse, data for players with names
 $players = import-csv ($serverfolder + "\player\$file") 
@@ -441,7 +442,8 @@ $fromsectohoursstr = [int]$fromsectohours
 
 $arkplayer + " played for " + $fromsectohoursstr + " hours in " + $sessioncount + " sessions, across " + $lasttofirstdaysstr + " days - that's " + $timediffpercent + " % of the time." >> "$serverFolder/player/.arkplayer.txt"
 
-} #end 
+} #end Output-ArkDataPlayerTime 
+
 
 
 
