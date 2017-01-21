@@ -16,7 +16,22 @@ $ARKDataWebDir = "C:\Dropbox\Public\html5\ARK" #Where Arkdata writes its website
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 #++++ DON'T TOUCH ANYTHING DOWN HERE OR YOU MIGHT BREAK IT +++ 
 
+#Test if paths are valid:
+if (!(test-path $ARKDataDataDir)) { 
+write-host $ARKDataDataDir "is not a valid directory, please check `$ARKDataDataDir in your init settings at the top of Arkdata.ps1. 
+Did not load Arkdata module." -f "Red"
+break
+} elseif (!(test-path $ARKDataWebDir)) 
+{ write-host $ARKDataWebDir "is not a valid directory, please check `$ARKDataWebDir in your init settings at the top of Arkdata.ps1. 
+Did not load Arkdata module." -f "Red"
+break
+}else {
+(cat .\arkdata.ps1 | Select-String "function") | select -skip 1
+write-host "Directories validated." -f "Yellow"
+write-host "Type " -f "Yellow" -nonewline; write-host "Start-ARKDataTask" -f  "Green" -nonewline; write-host " to start Arkdata." -f "Yellow"
+}
 
+#Functions 
 function Start-ArkdataTask
 {
 
