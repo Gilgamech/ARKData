@@ -36,9 +36,26 @@ $ArkdataWebDir = "C:\Dropbox\Public\html5\ARK"
 function Start-ArkdataTask
 {
 
-start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "24.16.204.32" -serverport 27015 }
-start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "72.251.237.140" -serverport 27019 }
+#Noob Friendly!Wiped 1/6 PVPVE 10xT 3xG 5xExp-72ndLegion - (v253
+start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "104.156.227.231" -serverport 27040 }
 
+#GILARK
+#start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "24.16.204.32" -serverport 27015 }
+
+#PvP-Hardcore-OfficialServer92
+#start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "72.251.237.140" -serverport 27015 }
+
+#PvP-Hardcore-OfficialServer90
+#start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "72.251.237.140" -serverport 27019 }
+
+#The-Asia-OfficialServer527
+#start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "115.182.255.34" -serverport 27015 }
+
+#The-Asia-OfficialServer528
+#start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "115.182.255.34" -serverport 27017 }
+
+#The-Asia-OfficialServer529
+#start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "115.182.255.34" -serverport 27019 }
 
  <# 
 while ($true) {
