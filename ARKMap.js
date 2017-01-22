@@ -155,7 +155,17 @@ for (i = 0; i < ARKMapJSON.length; i++) {
 	}
 	
 }; 
+  
 
+    ctx.font = "12px Helvetica";
+	TextWidthMax = Math.max(ctx.measureText(CursorText2).width, Math.max(ctx.measureText(CursorText3).width, ctx.measureText(CursorText4).width));
+
+	ctx.font = "22px Helvetica";
+	ctx.fillStyle="#fcfae5";
+	// TextWidthMax = ctx.measureText(CursorText).width
+	//TextWidthMax = Math.max(Math.max(ctx.measureText(CursorText).width, ctx.measureText(CursorText2).width),0)
+	TextWidthMax = Math.max(ctx.measureText(CursorText).width, TextWidthMax);
+	
 
 	//Draw mouse ARKMapJSON.
     ctx.fillStyle = "#222200";
