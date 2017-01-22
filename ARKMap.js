@@ -31,6 +31,7 @@ packetImage .src = "http://gilgamech.com/images/packet.png";
 
 // Game objects
 var ARKMapJSON = "";
+var TribeJSON = ""
 var TribeO2 = "";
 
 var clientClint = {};
@@ -92,6 +93,15 @@ function loadARKMap() {
     
 }
 
+function loadTribes() {
+    
+    loadJSON("http://gilgamech.com/ark/tribe.json", function(response) {
+  
+        var actual_JSON = JSON.parse(response);
+		TribeJSON = actual_JSON
+    }); // end loadJSON
+    
+}
 
 
 //draw it all
