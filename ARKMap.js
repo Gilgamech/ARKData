@@ -137,6 +137,23 @@ for (i = 0; i < ARKMapJSON.length; i++) {
 	ctx.fillRect(TribeX,TribeY,(ctx.measureText(TribeName).width), (ctx.measureText(TribeName).height)); 
 	ctx.textAlign = "left";
 	ctx.fillText((ARKMapJSON[i].TribeName), TribeX, TribeY+5);
+
+	//Is the mouse near a base?
+	if (
+		 TribeX > (mousePos.x  - 16) 
+		 && TribeX < (mousePos.x + 16 )
+		 && TribeY > (mousePos.y  - 16) 
+		 && TribeY < (mousePos.y + 16 )  
+	  ) {
+		CursorText = TribeName + " - " + Type
+		CursorText2 = "Lat: " + ARKMapJSON[i].Lat + " Long: " + ARKMapJSON[i].Long + " Last Seen: " + ARKMapJSON[i].LastSeenDate;
+		CursorText3 = "Demolish allowed on: " + ARKMapJSON[i].DestroyDate;
+		CursorText4 = Comments;
+		mouseover = 1;
+	} else {
+		
+	}
+	
 }; 
 
 
