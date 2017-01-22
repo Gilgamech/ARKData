@@ -30,7 +30,6 @@ packetImage .onload = function () {
 packetImage .src = "http://gilgamech.com/images/packet.png";
 
 // Game objects
-// var TribeOutput = ""
 var ARKMapJSON = "";
 var TribeO2 = "";
 
@@ -57,8 +56,6 @@ var reset = function () {
 	packet.y = 32 + (Math.random() * (canvas.height - 64));
 	
 	load();
-	TribeOP(text);
-	console.log(TribeO2);
 
 };
 
@@ -101,24 +98,11 @@ function load() {
     loadJSON("http://gilgamech.com/ark/ARKMap.json", function(response) {
   
         var actual_JSON = JSON.parse(response);
-        // console.log(actual_JSON);
-		// actual_JSON
 		ARKMapJSON = actual_JSON
     }); // end loadJSON
     
 }
 
-function TribeOP(TribeText) {
-// load()
-
-// var TribeOutput = new Array();
-// for (i = 0; i < TribeText.length; i++) { TribeOutput += TribeText[i].TribeName + ", " + TribeText[i].Lat + ", " + TribeText[i].Long + " \n"; } 
-// for (i = 0; i < TribeText.length; i++) { 
-// TribeOutput  += TribeText[i].Lat + ", " + TribeText[i].Long + " \n"; 
-// } 
-// TribeO2 = TribeOutput;
-// console.log ( TribeOutput);
-}    
 
 
 //draw it all
@@ -145,8 +129,6 @@ var render = function () {
   ctx.textBaseline = "top";
   // ctx.fillText("Base location: " + packetsCaught, 32, 32);
 
-for (i = 0; i < text.length; i++) { 
-// TribeOutput += TribeO2[i].Lat + ", " + TribeO2[i].Long + " \n"; 
 TribeX = (text[i].Lat*6)
 TribeY = (text[i].Long*6)
 
