@@ -111,6 +111,14 @@ var render = function () {
   }
     
   ctx.textBaseline = "top";
+   ctx.font = "10px Helvetica";
+	var CursorText = "Mouseover for tribe data."
+	var CursorText2 = "Lat: " + (Math.round((mousePos.y*100/canvas.height)*10)/10) + " Long: " + (Math.round((mousePos.x*100/canvas.width)*10)/10);
+	var CursorText3 = ""
+	var CursorText4 = ""
+	var mouseover = 0
+	var TextWidthMax = 0
+	
 for (i = 0; i < ARKMapJSON.length; i++) { 
 	// Set up X, Y and Tribe name.
 	TribeX = (ARKMapJSON[i].Long * Math.round((canvas.width/100))* 10 ) / 10;
@@ -132,6 +140,15 @@ for (i = 0; i < ARKMapJSON.length; i++) {
 }; 
 
 
+	//Draw mouse ARKMapJSON.
+    ctx.fillStyle = "#222200";
+    ctx.fillText(CursorText, (mousePos.x-6), (mousePos.y+16));
+	
+    ctx.font = "12px Helvetica";
+    ctx.fillText(CursorText2, (mousePos.x-6), (mousePos.y+38));
+    ctx.fillText(CursorText3, (mousePos.x-6), (mousePos.y+50));
+    ctx.fillText(CursorText4, (mousePos.x-6), (mousePos.y+62));
+  
 };
 
 // Get mouse position
