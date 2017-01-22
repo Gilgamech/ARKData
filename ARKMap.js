@@ -55,7 +55,7 @@ var reset = function () {
 	packet.x = 32 + (Math.random() * (canvas.width - 64));
 	packet.y = 32 + (Math.random() * (canvas.height - 64));
 	
-	load();
+	loadARKMap();
 
 };
 
@@ -93,7 +93,7 @@ function loadJSON(file, callback) {
  
 // Load...stuff?
 // https://laracasts.com/discuss/channels/general-discussion/load-json-file-from-javascript
-function load() {
+function loadARKMap() {
     
     loadJSON("http://gilgamech.com/ark/ARKMap.json", function(response) {
   
