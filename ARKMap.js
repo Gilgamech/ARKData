@@ -59,19 +59,8 @@ var reset = function () {
 
 };
 
-//Update game objects
 var update = function(modifier) {
  
-  //Did Clint catch the packet ?
-  if (
-    mousePos.x <= ( clientClint.x + 16)
-    && packet.x <= (mousePos.x + 16)
-    && mousePos.y <= ( clientClint.y + 16)
-    && packet.y <= (mousePos.y + 16)
-  ) {
-    ++ packetsCaught;
-    reset();
-  }
 };
 
 
@@ -110,24 +99,8 @@ var render = function () {
   if (bgReady) {
     ctx.drawImage(bgImage, 0, 0);
   }
-  
-  if (clientClintReady) {
-    ctx.fillRect((mousePos.x-6), (mousePos.y-6), (5), (5));
-    ctx.fillText("Cursor Location", (mousePos.x-6), (mousePos.y+16));
-
-  }
     
-  if (packetReady) {
-//    ctx.drawImage(packetImage, packet.x, packet.y);
-  }
- 
-  
-  //score
-  ctx.fillStyle = "rgb(250, 250, 250,)";
-  ctx.font = "12px Helvetica";
-  ctx.textAlign = "left";
   ctx.textBaseline = "top";
-  // ctx.fillText("Base location: " + packetsCaught, 32, 32);
 
 TribeX = (text[i].Lat*6)
 TribeY = (text[i].Long*6)
