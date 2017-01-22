@@ -167,6 +167,14 @@ for (i = 0; i < ARKMapJSON.length; i++) {
 	TextWidthMax = Math.max(ctx.measureText(CursorText).width, TextWidthMax);
 	
 
+if ((mousePos.x + TextWidthMax) > canvas.width) {
+  ctx.textAlign = "right";
+	ctx.fillRect((mousePos.x-9-(TextWidthMax)), (mousePos.y+15), (TextWidthMax + 5),62)
+  } else {
+	ctx.textAlign = "left";
+	ctx.fillRect((mousePos.x-9), (mousePos.y+15), (TextWidthMax + 5),62)
+};
+	
 	//Draw mouse ARKMapJSON.
     ctx.fillStyle = "#222200";
     ctx.fillText(CursorText, (mousePos.x-6), (mousePos.y+16));
