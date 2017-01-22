@@ -111,12 +111,24 @@ var render = function () {
   }
     
   ctx.textBaseline = "top";
-
-TribeX = (text[i].Lat*6)
-TribeY = (text[i].Long*6)
-
-ctx.fillRect(TribeX,TribeY,5,5); 
-ctx.fillText((text[i].TribeName), TribeX, TribeY+5);
+for (i = 0; i < ARKMapJSON.length; i++) { 
+	// Set up X, Y and Tribe name.
+	TribeX = (ARKMapJSON[i].Long * Math.round((canvas.width/100))* 10 ) / 10;
+	TribeY = (ARKMapJSON[i].Lat * Math.round((canvas.height/100))* 10 ) / 10;
+	TribeName = (ARKMapJSON[i].TribeName)
+	Type = (ARKMapJSON[i].Type)
+	Comments = (ARKMapJSON[i].Comments)
+	
+	// Draw up box behind name
+	ctx.fillStyle="#aabdb7";
+    ctx.font = "10px Helvetica";
+	
+	// Draw text
+    ctx.fillStyle = "#000000";
+	ctx.fillRect(TribeX,TribeY,5,5); 
+	ctx.fillRect(TribeX,TribeY,(ctx.measureText(TribeName).width), (ctx.measureText(TribeName).height)); 
+	ctx.textAlign = "left";
+	ctx.fillText((ARKMapJSON[i].TribeName), TribeX, TribeY+5);
 }; 
 
 
