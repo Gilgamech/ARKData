@@ -11,7 +11,7 @@ var bgImage = new Image();
 bgImage.onload = function () {
   bgReady = true;
 };
-bgImage.src = "http://gilgamech.com/ark/TheCenter.jpg";
+bgImage.src = "http://gilgamech.com/ark/TheCenter_Pencil.jpg";
 
 // load clientClint
 var clientClintReady = false;
