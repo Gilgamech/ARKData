@@ -3,7 +3,7 @@
 #Init settings
 $ARKDataBinDir = (Get-Location).path #Where Arkdata.ps1 is ran from. Currently also hardcoded on line 294.
 $ARKDataDataDir = "D:\ARKData" #Where Arkdata stores its data files.
-$ARKDataWebDir = "C:\Dropbox\Public\html5\ARK" #Where Arkdata writes its website files.
+$ARKDataWebDir = "C:\Dropbox\www\ARK" #Where Arkdata writes its website files.
 #
 #
 #
