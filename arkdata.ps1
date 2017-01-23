@@ -27,7 +27,7 @@ break
 Did not load Arkdata module." -f "Red"
 break
 }else {
-(cat .\arkdata.ps1 | Select-String "function") | select -skip 1
+(cat "$ARKDataBinDir\arkdata.ps1" | Select-String "function") | select -skip 1
 write-host "Directories validated." -f "Yellow"
 write-host "Type " -f "Yellow" -nonewline; write-host "Start-ARKDataTask" -f  "Green" -nonewline; write-host " to start Arkdata." -f "Yellow"
 }
