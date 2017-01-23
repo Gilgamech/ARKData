@@ -38,7 +38,7 @@ function Start-ArkdataTask
 {
 
 #Noob Friendly!Wiped 1/6 PVPVE 10xT 3xG 5xExp-72ndLegion - (v253
-start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "104.156.227.231" -serverport 27040 }
+start-job { ipmo "C:\Dropbox\repos\ARKData\arkdata.ps1" ; Run-ArkdataTask -serverip "104.156.227.231" -serverport 27040 }
 
 #GILARK
 #start-job { ipmo "C:\Dropbox\Public\Scripts\Powershell\ARK\Arkdata.ps1" ; Run-ArkdataTask -serverip "24.16.204.32" -serverport 27015 }
