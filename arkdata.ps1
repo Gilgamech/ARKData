@@ -353,7 +353,7 @@ Function Output-ARKDataPlayerTime {
 
 Function Out-ARKDataPlayerFiles {
 	Param(
-		[Parameter(Mandatory=$True,Position=1)][object]$ARKData
+		[Parameter(Mandatory=$True)][object]$ARKData
 	); #end Param
 	#get latest scrape, parse, data for players with names
 	$players = $ARKData.players | where {$_.name -ne ""} 
@@ -376,7 +376,7 @@ Function Out-ARKDataPlayerFiles {
  
 Function Out-ARKDataTribeDB {
 	Param(
-		[Parameter(Mandatory=$True,Position=1)]
+		[Parameter(Mandatory=$True)]
 		[object]$ARKData
 	); #end Param
 	$ARKtime = get-date -format yyyy-MM-dd-HH-mm-ss
@@ -409,7 +409,9 @@ Function Out-ARKDataTribeDB {
 }; #end Out-ARKDataTribeDB
 
 Function Test-ARKDataHostDirs {
-	Param ([Parameter(Mandatory=$True,Position=1)][string]$ARKhost) #end param
+	Param (
+		[Parameter(Mandatory=$True)][string]$ARKhost
+	); #end Param
 	#Make directories if not there
 	if(!(Test-Path "$ARKDataDataDir\$ARKhost")){
 		md "$ARKDataDataDir\$ARKhost";  #Main dir
@@ -418,17 +420,16 @@ Function Test-ARKDataHostDirs {
 	}; #end Test-Path
 }; #end Test-ARKDataHostDirs
 
-Function Get-ARKDataServerName 
-	Param
-		[Parameter(Mandatory=$True,Position=1)]
-		[object]$ARKData
-		[Parameter(Position=2)]
+Function Get-ARKDataServerName  {
+	Param (
+		[Parameter(Mandatory=$True)][object]$ARKData,
 		[switch]$JSON
-	)
+	); #end Param
 
 	#Parse directory name, create if not ther
-	if ($JSON) 
+	if ($JSON)  {
 		$ARKData = (ConvertFrom-Json $ARKData)
+	}; #end if JSON
 	
 	$ARKhost = ($ARKData.info.hostname.split(" "))[0]
 	$ARKhost
@@ -436,9 +437,9 @@ Function Get-ARKDataServerName
 
 	#Get-ARKDataFileDate 2016-03-16-00-07-02
 Function Get-ARKDataFileDate {
-	Param
-		[Parameter(Mandatory=$True,Position=1)
-		[string]$FileName
+	Param (
+		[Parameter(Mandatory=$True)][string]$FileName
+	); #end Param
 	
 	$FileName = $FileName.split(".")[0]
 	Get-Date -year $FileName.split("-")[0] -month $FileName.split("-")[1] -day $FileName.split("-")[2] -hour $FileName.split("-")[3] -minute $FileName.split("-")[4] -second $FileName.split("-")[5]
@@ -517,7 +518,7 @@ $tailpart >> $indexfile #Footer and banner ads
 
 Function Out-ARKDataWebpage {
 Param(
-	[Parameter(Mandatory=$True,Position=1)]
+	[Parameter(Mandatory=$True)]
 	[string]$Servername
 )
 
