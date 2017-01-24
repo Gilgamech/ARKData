@@ -1,0 +1,32 @@
+Things ARKDataScrape.ps1 does:
+Download $payload, write to file, convert to $arkdata.
+1. Import $ARKDataPayload (ARKServers.net)
+2. Import $ARK2DataPayload (Bar ARK)
+3. Writes raw $payload data files (JSON)
+a. Converts $payload to $arkdata
+4. Parse out servername from $arkhost (Get-ARKDataPayload depends on this)
+5. Make $arkhost dirs if not there (Get-ARKDataPayload depends on this)
+inputs: $serverip $serverport $requestWrapper
+outputs: $arkdata $arkhost\folders
+Get-ARKDataPayload
+
+#independent
+6. Import master server list (ARKServers.net) 
+inputs: Webpage $arktime
+outputs: datafile
+Get-ARKDataDedicatedServers
+
+
+#take a cleaned $arkdata file
+#Doesn't actually write, need to figure out why.
+7. Write $player CSVs
+inputs: $arkdata
+outputs: \player\$playername.csv files
+Out-ARKDataPlayerFiles
+
+8. Add $player to .tribe.csv
+inputs: $arkdata
+outputs: \assets\.tribe.csv
+Out-ARKDataTribeDB
+
+
