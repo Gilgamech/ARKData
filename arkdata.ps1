@@ -192,9 +192,6 @@ Function Get-ARKDataPlayers {
 		#write-host $playerdata ;
 		if ($playerdata -ne $null) {
 			
-			
-			
-
 	foreach ($player in $players2) { 	
 			$playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
 			
