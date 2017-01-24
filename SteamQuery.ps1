@@ -1,4 +1,4 @@
-﻿
+﻿# .\SteamQuery.ps1 Build: 1 2016-04-17T15:15:48      
 
 
 
@@ -12,21 +12,16 @@
 $SteamQuery = .\SteamQuery.ps1
 (cat $SteamQuery | Select-String "function") | select -skip 1
 
-function Get-TestingCommands
-{
+function Get-TestingCommands {
 write-host "
 Get-SteamServers 104.156.227.231 -Player
 Get-SteamServers 104.156.227.231 27040
 Get-SteamServers 10.0.0.5 -Rules
 Get-SteamServerInfo 10.0.0.5 
-Get-SteamServerInfo 72.251.237.140 
 "
 }
 
-
-
-function Get-ArkdataSteamDedicatedServers
-{
+function Get-ArkdataSteamDedicatedServers {
 #Param (
 #[Parameter(Mandatory=$True,Position=1)]
 #[string]$Filename
@@ -63,8 +58,7 @@ $objection
 
 
 
-function Get-SteamServerInfo
-{
+function Get-SteamServerInfo {
 Param(
    [Parameter(Mandatory=$True,Position=1)]
    [ipaddress]$serveraddr,
@@ -75,6 +69,7 @@ Param(
 $bytes =  "ÿÿÿÿTSource Engine Query" | Flip-TextToBytes -a 
 $bytes += "00"
 #Set our UDP timeout in ms.
+
 $UDPtimeout = 1000
 
 #If you don't specify a port, it uses default 27015
@@ -87,7 +82,7 @@ if (!($serverport)) {$serverport = 27015}
 #Timeout in ms
 #	$udpclient.client.receiveTimeout = 3000
 	$udpclient.client.receiveTimeout = $UDPtimeout
-#Not sure what we're doing with BytesSent here.
+#Not sure what we're doing with BytesSent here - it's just 9.
     $bytesSent=$udpclient.Send($bytes,$bytes.length,$endpoint)
 
 #Listen for the challenge response
@@ -148,8 +143,7 @@ $udpclient.Close()
 
 
 
-function Get-SteamServerRules
-{
+function Get-SteamServerRules {
 Param(
    [Parameter(Mandatory=$True,Position=1)]
    [ipaddress]$serveraddr,
@@ -231,8 +225,7 @@ $udpclient.Close()
 
 
 
-function Get-SteamServerPlayers
-{
+function Get-SteamServerPlayers {
 Param(
    [Parameter(Mandatory=$True,Position=1)]
    [ipaddress]$serveraddr,
@@ -337,8 +330,7 @@ $udpclient.Close()
 
 
 
-function Get-SteamServers
-{
+function Get-SteamServers {
 Param(
    [Parameter(Mandatory=$True,Position=1)]
    [ipaddress]$serveraddr,
@@ -448,8 +440,7 @@ $udpclient.Close()
 
 
 
-function Get-SteamServerRules
-{
+function Get-SteamServerRules {
 Param(
    [Parameter(Mandatory=$True,Position=1)]
    [ipaddress]$serveraddr,
