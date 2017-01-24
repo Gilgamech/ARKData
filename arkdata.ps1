@@ -83,6 +83,8 @@ Function Run-ARKDataTask {
 		#ARKData player reports, these take a long time.
 		Get-ARKDataPlayersLastDay $Servername
 
+		#Push the ArkMap CSV to JSON.
+		gc C:\Dropbox\repos\www\ARK\ARKMap.csv | ConvertFrom-Csv | ConvertTo-Json > C:\Dropbox\repos\www\ARK\ARKMap.json
 		#Main page
 		#Do this stuff once an hour: 
 		if ((get-date).minute -eq 0 ) {
@@ -145,8 +147,7 @@ Function Import-ARKDataINI {
 		[ipaddress]$Serverip = ($Linesplit[0])
 		
 		#Add a line to the array, create columns for Name, Value, Type
-		#$objection += "" ; 
-		$objection += "" | select ServerName, ServerIP #, Type ; 
+		$objection += "" | select ServerName, ServerIP 
 		#Math out the index of the new line
 		$arrayspot = ( $objection.length -1 )
 		#Populate Name
@@ -187,30 +188,27 @@ Function Get-ARKDataPlayers {
 	$players = (convertfrom-json (gc ($Serverfolder + "\" + (Dir $ServerFolder | Sort CreationTime -Descending | Select Name -First 1).name))).players
 	$players2 = ($players | where {$_.name -ne ""}).name
 	$playerinfo = $players2
-	
-	#foreach ($player in $players2) { 
-	$players2 | foreach-object { 
-		$player = $_  
-		#write-host $player ;
-		
 		[array]$playerdata = $Tribe | where {$_."Steam name" -eq $player } | select "Steam name",  "ARK name", "Tribe name"; 
 		#write-host $playerdata ;
 		if ($playerdata -ne $null) {
 			
+			
+			
+
+	foreach ($player in $players2) { 	
 			$playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
 			
-			return $playerdata #| FT ;
-			
-		} else { 
-			#Have to add in some kind of values here.
-			
+			#send back player data
+			$playerdata			
+		} else {
+			#Have to add in some kind of values here
 			$playerdata =  $playerdata | Add-Member @{"Steam name"=$player} -PassThru
 			$playerdata =  $playerdata | Add-Member @{"ARK name"="$($player.name) ???"} -PassThru
 			$playerdata =  $playerdata | Add-Member @{"Tribe name"="#N\A"} -PassThru
 			$playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
 			
 			#send back player data
-			return $playerdata #| FT ;
+			$playerdata
 			
 		}; #end if playerdata
 	}; #end foreach
@@ -258,7 +256,7 @@ Function Get-ARKDataPlayersLastDay {
 			} else{
 				$playerlasttime = get-date -format yyyy-MM-dd-HH-mm-ss
 				$playerlastsession = "00:00"
-			}; #end if test-path 
+			}; #end if Test-Path 
 
 			$playerlasttime = get-date -year $playerlasttime.split("-")[0] -month $playerlasttime.split("-")[1] -day $playerlasttime.split("-")[2] -hour $playerlasttime.split("-")[3] -minute $playerlasttime.split("-")[4] -second $playerlasttime.split("-")[5]
 			$playerdata =  $playerdata | Add-Member @{"Last Session Ended"=$playerlasttime} -PassThru
@@ -411,43 +409,44 @@ Function Out-ARKDataTribeDB {
 }; #end Out-ARKDataTribeDB
 
 Function Test-ARKDataHostDirs {
-Param ([Parameter(Mandatory=$True,Position=1)][string]$ARKhost) #end param
-#Make directories if not there
-if(!(test-path "$ARKDataDataDir\$ARKhost")){
-md "$ARKDataDataDir\$ARKhost";  #Main dir
-md "$ARKDataDataDir\$ARKhost\2";  #Second data source subdir
-md "$ARKDataDataDir\$ARKhost\player\" #Player file subdir
-}
-}
+	Param ([Parameter(Mandatory=$True,Position=1)][string]$ARKhost) #end param
+	#Make directories if not there
+	if(!(Test-Path "$ARKDataDataDir\$ARKhost")){
+		md "$ARKDataDataDir\$ARKhost";  #Main dir
+		md "$ARKDataDataDir\$ARKhost\2";  #Second data source subdir
+		md "$ARKDataDataDir\$ARKhost\player\" #Player file subdir
+	}; #end Test-Path
+}; #end Test-ARKDataHostDirs
 
-Function Get-ARKDataServerName {
-Param(
-	[Parameter(Mandatory=$True,Position=1)]
-	[object]$ARKData,
-	[Parameter(Position=2)]
-	[switch]$json
-)
+Function Get-ARKDataServerName 
+	Param
+		[Parameter(Mandatory=$True,Position=1)]
+		[object]$ARKData
+		[Parameter(Position=2)]
+		[switch]$JSON
+	)
 
-#Parse directory name, create if not there
-if ($json) {
-$ARKData = (ConvertFrom-Json $ARKData)
-}
-$ARKhost = ($ARKData.info.hostname.split(" "))[0]
-$ARKhost
-}
+	#Parse directory name, create if not ther
+	if ($JSON) 
+		$ARKData = (ConvertFrom-Json $ARKData)
+	
+	$ARKhost = ($ARKData.info.hostname.split(" "))[0]
+	$ARKhost
+}; #end Get-ARKDataServerName
 
-#Get-ARKDataFileDate 2016-03-16-00-07-02
+	#Get-ARKDataFileDate 2016-03-16-00-07-02
 Function Get-ARKDataFileDate {
-Param(
-	[Parameter(Mandatory=$True,Position=1)]
-	[string]$FileName
-)
-$FileName = $FileName.split(".")[0]
-get-date -year $FileName.split("-")[0] -month $FileName.split("-")[1] -day $FileName.split("-")[2] -hour $FileName.split("-")[3] -minute $FileName.split("-")[4] -second $FileName.split("-")[5]
-}
+	Param
+		[Parameter(Mandatory=$True,Position=1)
+		[string]$FileName
+	
+	$FileName = $FileName.split(".")[0]
+	Get-Date -year $FileName.split("-")[0] -month $FileName.split("-")[1] -day $FileName.split("-")[2] -hour $FileName.split("-")[3] -minute $FileName.split("-")[4] -second $FileName.split("-")[5]
+}; #end Get-ARKDatatFileDate
 
 Filter Convert-SymbolsToUnderscore {
 	if ($_) {
+		$_ = $_ -replace(" ","_")
 		$_ = $_ -replace("``","_")
 		#$_ = $_ -replace("[~]","_")
 		#$_ = $_ -replace("[!]","_")
