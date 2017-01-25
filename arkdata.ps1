@@ -795,7 +795,7 @@ Copyright 2016 Gilgamech Technologies.</h4>
 <h6></h6>
 <br>
 <p class="banner">
-	<a href="/ARK/A0Oqmx8.png"><img src="/ARK/A0Oqmx8.png" title="C1ick h34r ph0r m04r inph0" /></a>
+	<a href="/ARK/Images/A0Oqmx8.png"><img src="/ARK/Images/A0Oqmx8.png" title="C1ick h34r ph0r m04r inph0" /></a>
 </p>
 </body></html>
 '@
