@@ -11,7 +11,7 @@ var bgImage = new Image();
 bgImage.onload = function () {
   bgReady = true;
 };
-bgImage.src = "http://gilgamech.com/ark/TheCenter_Pencil.jpg";
+bgImage.src = "http://gilgamech.com/ARKData/Images/TheCenter_Pencil.jpg";
 
 // load clientClint
 var clientClintReady = false;
@@ -30,7 +30,7 @@ packetImage .onload = function () {
 packetImage .src = "http://gilgamech.com/images/packet.png";
 
 // Game objects
-var ARKMapJSON = "";
+var ARKDataMapJSON = "";
 var TribeJSON = ""
 var TribeO2 = "";
 
@@ -47,7 +47,7 @@ addEventListener('mousemove', function(evt) {
  
 // reset game when player catches packet
 var reset = function () {
-	loadARKMap();
+	loadARKDataMap();
 };
 
 // Load JSON
@@ -68,19 +68,19 @@ function loadJSON(file, callback) {
  
 // Load...stuff?
 // https://laracasts.com/discuss/channels/general-discussion/load-json-file-from-javascript
-function loadARKMap() {
+function loadARKDataMap() {
     
-    loadJSON("http://gilgamech.com/ark/ARKMap.json", function(response) {
+    loadJSON("http://gilgamech.com/ARKData/ARKDataMap.json", function(response) {
   
         var actual_JSON = JSON.parse(response);
-		ARKMapJSON = actual_JSON
+		ARKDataMapJSON = actual_JSON
     }); // end loadJSON
     
 }
 
 function loadTribes() {
     
-    loadJSON("http://gilgamech.com/ark/tribe.json", function(response) {
+    loadJSON("http://gilgamech.com/ARKData/tribe.json", function(response) {
   
         var actual_JSON = JSON.parse(response);
 		TribeJSON = actual_JSON
@@ -104,13 +104,13 @@ var render = function () {
 	var TextWidthMax = 0
 	var TextBoxHeight = 62
 	
-for (i = 0; i < ARKMapJSON.length; i++) { 
+for (i = 0; i < ARKDataMapJSON.length; i++) { 
 	// Set up X, Y and Tribe name.
-	TribeX = (ARKMapJSON[i].Long * Math.round((canvas.width/100))* 10 ) / 10;
-	TribeY = (ARKMapJSON[i].Lat * Math.round((canvas.height/100))* 10 ) / 10;
-	TribeName = (ARKMapJSON[i].TribeName)
-	Type = (ARKMapJSON[i].Type)
-	Comments = (ARKMapJSON[i].Comments)
+	TribeX = (ARKDataMapJSON[i].Long * Math.round((canvas.width/100))* 10 ) / 10;
+	TribeY = (ARKDataMapJSON[i].Lat * Math.round((canvas.height/100))* 10 ) / 10;
+	TribeName = (ARKDataMapJSON[i].TribeName)
+	Type = (ARKDataMapJSON[i].Type)
+	Comments = (ARKDataMapJSON[i].Comments)
 	
 	// Draw up box behind name
 	ctx.fillStyle="#aabdb7";
@@ -121,20 +121,21 @@ for (i = 0; i < ARKMapJSON.length; i++) {
 	ctx.fillRect(TribeX,TribeY,5,5); 
 	ctx.fillRect(TribeX,TribeY,(ctx.measureText(TribeName).width), (ctx.measureText(TribeName).height)); 
 	ctx.textAlign = "left";
-	ctx.fillText((ARKMapJSON[i].TribeName), TribeX, TribeY+5);
+	ctx.fillText((ARKDataMapJSON[i].TribeName), TribeX, TribeY+5);
 
 	//Is the mouse near a base?
 	if (
-		 TribeX > (mousePos.x  - 6) 
+		 TribeX > (mousePos.x  - 16) 
 		 && TribeX < (mousePos.x + 6 )
-		 && TribeY > (mousePos.y  - 6) 
+		 && TribeY > (mousePos.y  - 16) 
 		 && TribeY < (mousePos.y + 6 )  
 	  ) {
 		CursorText = TribeName + " - " + Type
-		CursorText2 = "Lat: " + ARKMapJSON[i].Lat + " Long: " + ARKMapJSON[i].Long + " Last Seen: " + ARKMapJSON[i].LastSeenDate;
-		CursorText3 = "Demolish allowed on: " + ARKMapJSON[i].DestroyDate;
+		CursorText2 = "Lat: " + ARKDataMapJSON[i].Lat + " Long: " + ARKDataMapJSON[i].Long + " Last Seen: " + ARKDataMapJSON[i].LastSeenDate;
+		CursorText3 = "Demolish allowed on: " + ARKDataMapJSON[i].DestroyDate;
 		CursorText4 = Comments;
 		mouseover = 1;
+		// document.getElementById("TribeName").value = TribeName;
 	} else {
 		
 	}
@@ -165,7 +166,7 @@ if ((mousePos.y + TextBoxHeight) > canvas.height) {
   } else {
 	// ctx.fillRect((mousePos.x-9), (mousePos.y+15), (TextWidthMax + 5),62)
 };
-	//Draw mouse ARKMapJSON.
+	//Draw mouse ARKDataMapJSON.
     ctx.fillStyle = "#222200";
     ctx.fillText(CursorText, (mousePos.x-6), (mousePos.y+16));
 	
@@ -173,7 +174,6 @@ if ((mousePos.y + TextBoxHeight) > canvas.height) {
     ctx.fillText(CursorText2, (mousePos.x-6), (mousePos.y+38));
     ctx.fillText(CursorText3, (mousePos.x-6), (mousePos.y+50));
     ctx.fillText(CursorText4, (mousePos.x-6), (mousePos.y+62));
-  
 };
 
 // Get mouse position
@@ -192,7 +192,6 @@ var main = function () {
   var delta = now - then;
   
  
- update(delta/1000);
   render();
   
   then = now;
