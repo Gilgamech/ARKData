@@ -188,11 +188,11 @@ Function Get-ARKDataPlayers {
 	$players = (convertfrom-json (gc ($Serverfolder + "\" + (Dir $ServerFolder | Sort CreationTime -Descending | Select Name -First 1).name))).players
 	$players2 = ($players | where {$_.name -ne ""}).name
 	$playerinfo = $players2
+	foreach ($player in $players2) { 	
 		[array]$playerdata = $Tribe | where {$_."Steam name" -eq $player } | select "Steam name",  "ARK name", "Tribe name"; 
 		#write-host $playerdata ;
 		if ($playerdata -ne $null) {
 			
-	foreach ($player in $players2) { 	
 			$playerdata =  $playerdata | Add-Member @{TimeF=($players | where {$_.name -eq $player} | select TimeF).TimeF} -PassThru
 			
 			#send back player data
