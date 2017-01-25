@@ -18,6 +18,10 @@ SteamQuery:
 - Simplify data process algorithms for faster action and less resource use.
 - Integrate ARKMap into boilerplate.
 - 
+2.2: 
+- Other tribe bases double in size when mouseover.
+2.3: 
+- Alliance tracking support.
 2.5:
 - Introduce SteamQuery integration for direct Steam server querying - no need to rely on SteamQuery PHP application JSON input.
 3.0:
