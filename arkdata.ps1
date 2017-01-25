@@ -227,11 +227,11 @@ Function Get-ARKDataPlayersLastDay {
 		$_ -ne ""
 	}; #end where _
 
-	$players | foreach-object { $player = $_ ; 
+	foreach ($player in $players) { 	
 		foreach ($current in $currentplayers) { 
 			#If they're in both lists, don't write.
 			if ($current -eq $player.name ) {
-				return
+				Continue 
 			}; #end if current 
 		}; #end foreach current
 
@@ -258,7 +258,7 @@ Function Get-ARKDataPlayersLastDay {
 			$playerlasttime = get-date -year $playerlasttime.split("-")[0] -month $playerlasttime.split("-")[1] -day $playerlasttime.split("-")[2] -hour $playerlasttime.split("-")[3] -minute $playerlasttime.split("-")[4] -second $playerlasttime.split("-")[5]
 			$playerdata =  $playerdata | Add-Member @{"Last Session Ended"=$playerlasttime} -PassThru
 			$playerdata =  $playerdata | Add-Member @{"Session Duration"=$playerlastsession} -PassThru
-			return $playerdata #| FT ;	
+			$playerdata
 		} else { 
 			#Have to add in some kind of values here.
 			$playername = $player.name 
@@ -269,7 +269,7 @@ Function Get-ARKDataPlayersLastDay {
 			$playerdata =  $playerdata | Add-Member @{"Last Session Ended"=$playerlasttime} -PassThru
 
 			#send back player data
-			return $playerdata #| FT ;
+			$playerdata
 		}; #end if playerdata
 	}; #end $players foreach-object 
 
