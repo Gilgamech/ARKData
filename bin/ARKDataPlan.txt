@@ -1,0 +1,29 @@
+ARKMap:
+- Move JSON packet to webpage? Or have JS build/populate fields? 
+- Have fields for each column (Tribename,Type,Lat,Long,LastSeenDate,DestroyDate,DestroyInDayHourMinuteSecond,Comments), with defaults pre-set for Type,LastSeenDate.
+- Show # online in mouseover. (Show list of online?)
+- Have mouseover highlight/embiggen tribe's other bases.
+- Improve efficiency so it stops crashing. 
+- Find better background map. (This one's drawings are off by -10 x points)
+
+ARKData:
+- Improve bad-character handling. 
+- Get some sort of better data source going. If not local Elastic, maybe another database server?
+
+SteamQuery: 
+- Rebuild to get it working. 
+- Use Var,Var2,Var3=Input -split("0"), stream readers, templates, and other tricks to parse.
+
+2.1:
+- Simplify data process algorithms for faster action and less resource use.
+- Integrate ARKMap into boilerplate.
+- 
+2.2: 
+- Other tribe bases double in size when mouseover.
+2.3: 
+- Alliance tracking support.
+2.5:
+- Introduce SteamQuery integration for direct Steam server querying - no need to rely on SteamQuery PHP application JSON input.
+3.0:
+- Make ARKMap a Google Maps-style background overlay, and have 
+- 

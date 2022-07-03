@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<!--
+	html {
+    height: 100%;
+            }  
+    body {
+    height: 100%;
+	background-attachment: fixed;
+    background-image: url("/ARKData/Images/bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding:0px;
+	margin: 0px;
+            }
+	LI		{font: 13px Verdana;}
+	B		{font: 14px Verdana; font-weight: bold;}
+	A:not(div.top,nav)		{
+			  font:12px Verdana;
+			  font-weight: bold;
+			  color=black;
+			  text-decoration: none;
+			}
+	input[type="number"] {
+	width:60px;
+			}
+	input {
+	display: table-cell;
+    text-align: center;
+			}
+	H1		{font: 16px Arial;font-weight: bold;color=black;text-align: center;}
+	H2		{font: 14px Arial;font-weight: bold;color=black;text-align: center;}
+	H3		{font: 12px Arial;font-weight: bold;color=black;text-align: center;}
+	H4		{font: 10px Arial;font-weight: bold;color=black;text-align: center;}
+	H5		{font: 8px Arial;font-weight: bold;color=black;text-align: center;}
+	H6		{font: 6px Arial;font-weight: bold;color=black;text-align: center;}
+	table, th, td {
+    background-color: #fffff;
+    text-align: center;
+    border: 1px solid black;
+	}
+	a[href^="mailto"] { color: blue; }
+	image {
+	padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    }
+	table {
+    margin-left:auto; 
+    margin-right:auto;
+	}
+	table {
+    border-collapse: collapse;
+    text-align: center;
+    }
+	tr:nth-child(even) {background-color: #c6e1fb}
+	tr:nth-child(odd) {background-color: #d3eeff}
+	p.banner {
+	text-align:center;
+	}
+-->

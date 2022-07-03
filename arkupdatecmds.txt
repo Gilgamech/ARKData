@@ -1,0 +1,15 @@
+#New-Powershell -noprofile
+start-process powershell -ArgumentList "-noprofile"; exit
+
+C:\Dropbox\Programs\SteamCmd\steamcmd.exe
+
+login anonymous
+force_install_dir D:\Games\arkserver
+app_update 376030 validate
+exit
+
+C:\Dropbox\Programs\SteamCmd\arkserver_shortcut.bat
+
+exit
+
+#EnableCheats S3rv3rP4ssw0rdG03H3r3
